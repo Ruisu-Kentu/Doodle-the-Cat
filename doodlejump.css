@@ -1,0 +1,77 @@
+body {
+    text-align: center;
+    margin: 0; /* Remove default margin */
+    font-family: Arial, sans-serif; /* Add a clean font */
+    background-color: #f0f0f0; /* Optional: Light background for contrast */
+}
+
+/* Style for the game board */
+#board {
+    position: relative;
+    width: 90vmin; /* Use the smaller of viewport width or height */
+    height: 135vmin; /* Maintain the original aspect ratio (590:876 ~ 2:3) */
+    background: url('../doodle-jump-master/images/bg1.png'); /* Initial background */
+    background-size: cover;
+    background-position: bottom center; /* Ensure the scene starts at the bottom */
+    transition: background 2s ease-in-out; /* Smooth background transitions */
+    margin: 0 auto; /* Center the board horizontally */
+}
+
+/* Transition wrapper for the scene change */
+#board .transition-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../doodle-jump-master/images/bg1.png'); /* Same initial background */
+    background-size: cover;
+    transform: translateY(100%); /* Start off-screen (down) */
+    animation: slideUp 2s forwards; /* Slide-up animation */
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%); /* Start from below */
+    }
+    100% {
+        transform: translateY(0); /* End at top */
+    }
+}
+
+/* Optional: Add an overlay to simulate the transition (like a blackout effect) */
+#board .transition-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    animation: overlayFadeOut 2s forwards;
+}
+
+/* Fade-out effect for overlay */
+@keyframes overlayFadeOut {
+    0% {
+        opacity: 1; /* Full opacity at start */
+    }
+    100% {
+        opacity: 0; /* Fade out to invisible */
+    }
+}
+
+/* Responsive adjustments for extreme screen sizes */
+@media (max-width: 768px) {
+    #board {
+        width: 100vw; /* Max out the width on small screens */
+        height: auto; /* Automatically adjust height */
+    }
+}
+
+@media (orientation: landscape) {
+    #board {
+        width: 60vh; /* Ensure it fits within the height */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
